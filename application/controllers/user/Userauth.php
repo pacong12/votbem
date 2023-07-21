@@ -13,7 +13,7 @@ class Userauth extends CI_Controller
         $this->load->database();
         $this->load->library('form_validation', 'session');
         $this->load->helper('url', 'language');
-        $this->load->model('Userauth_model');
+        $this->load->model('userAuth_model');
     }
 
     public function index()
