@@ -162,7 +162,8 @@ class Kandidat extends CI_Controller
                 'nourut' => set_value('nourut', $row->nourut),
                 'visi' => set_value('visi', $row->visi),
                 'misi' => set_value('misi', $row->misi),
-                'foto' => set_value('foto', $row->foto)
+                'foto' => set_value('foto', $row->foto),
+                'status' => set_value('status', $row->status)
             );
             $this->load->view('back/kandidat/kandidat_form', $data);
         } else {
@@ -310,7 +311,7 @@ class Kandidat extends CI_Controller
         $id = (int) $id;
 
         $data = array(
-            'aktif' => '0',
+            'status' => '0',
         );
 
         $this->Kandidat_model->update($id, $data);
@@ -333,7 +334,7 @@ class Kandidat extends CI_Controller
         $id = (int) $id;
 
         $data = array(
-            'aktif' => '1',
+            'status' => '1',
         );
 
         $this->Kandidat_model->update($id, $data);
