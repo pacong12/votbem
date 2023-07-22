@@ -11,7 +11,7 @@
         <p class="lead"><strong>Anda sudah menggunkan hak pilih anda</strong><br>Auto redirect to Homepage in <span id="time"></span></p>
         <hr>
         <p class="lead">
-            <a class="btn btn-primary btn-sm" href="<?php echo base_url('user/userAuth/logout') ?>" role="button">Continue to homepage</a>
+            <a class="btn btn-primary btn-sm" href="<?php echo base_url('user/userauth/logout') ?>" role="button">Continue to homepage</a>
         </p>
     </div>
 
