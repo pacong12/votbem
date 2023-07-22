@@ -22,7 +22,7 @@
                         <span class="d-block mb-3 caption" data-aos="fade-up" data-aos-delay="100">Selamat Datang!</span>
                         <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="200">
                             E-Voting <br />
-                            SMANSA XXX
+                            STAIS MAJENANG
                         </h1>
                         <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">Silahkan Login terlebih dahulu</span>
                         <a href="<?php echo base_url('user') ?>" class="btn-custom" data-aos="fade-up" data-aos-delay="400"><span>Login</span></a>
