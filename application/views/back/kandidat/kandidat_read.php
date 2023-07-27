@@ -67,7 +67,7 @@
                 <div class="col-md-3">
                     <div class="box box-primary">
                         <div class="box box-body">
-                            <img class="img-responsive" style="max-height: 300px;" src="<?php echo base_url('assets/uploads/kandidat/' . $foto) ?>" alt="kandidat picture">
+                            <img class="img-responsive" style="max-height: 300px;" src="<?php echo base_url('./assets/uploads/kandidat/' . $foto) ?>" alt="kandidat picture">
                         </div>
                     </div>
                 </div>
