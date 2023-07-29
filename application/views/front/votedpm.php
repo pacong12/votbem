@@ -19,7 +19,7 @@
         $bootstrapColWidth = 12 / $numOfCols;
         ?>
         <div class="row">
-            <?php foreach ($kandidat_data as $kandidat) : ?>
+            <?php foreach ($kandidat_data_dpm as $kandidat) : ?>
                 <div class="col-md-<?php echo $bootstrapColWidth; ?>">
                     <div style="margin-top: 60px" class="card bg-light text-center">
                         <img class="card-img-top" style="object-fit:cover" height="245px" src="<?php echo base_url('assets/uploads/kandidatdpm/') . $kandidat->foto ?>" alt="Card image cap">

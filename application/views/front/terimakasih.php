@@ -43,7 +43,7 @@
                     // add one second so that the count down starts at the full duration
                     // example 05:00 not 04:59
                     start = Date.now() + 1000;
-                    window.location.href = "<?php echo base_url('user/userauth/logout') ?>";
+                    window.location.href = "<?php echo base_url('front/votedpm') ?>";
                 }
             };
             // we don't want to wait a full second before the timer starts
