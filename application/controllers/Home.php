@@ -64,7 +64,7 @@ class Home extends CI_Controller
         // Check status sudah memilih atau belum
         $status = $this->session->userdata('status');
         if ($status === 'Belum Memilih') {
-            $this->load->view('front/vote', $data);
+            $this->load->view('front/votedpm', $data);
         } elseif ($status === 'Sudah Memilih') {
 
             $data = array(
