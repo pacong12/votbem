@@ -26,6 +26,11 @@ class Dashboard_model extends CI_Model
         $this->db->where($q, $idkandidat);
         return $this->db->count_all_results($table);
     }
+    public function tampil_datadpm($q, $idkandidatbem, $table)
+    {
+        $this->db->where($q, $idkandidatbem, $table);
+        return $this->db->count_all_results($table);
+    }
 
     // get total rows
     function total_rows($table)

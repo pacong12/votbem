@@ -55,10 +55,12 @@ class Dashboard extends CI_Controller
         $jumlahDataPemilih = $this->Dashboard_model->total_rows('data_pemilih');
         // Jumlah Kandidat
         $jumlahKandidat = $this->Dashboard_model->total_rows('kandidat');
+        // $jumlahKandidatdpm = $this->Dashboard_model->total_rows('kandidatdpm');
         // Menghitung jumlah suara yang sudah masuk ke dalam database
         $jumlahSuaraMasuk = $this->Dashboard_model->total_rows('data_pemilihan');
         // Mengambil semua kandidat data
         $kandidatData = $this->Dashboard_model->get_all('nourut', 'kandidat');
+        // $kandidatdpmData = $this->Dashboard_model->get_all('nourut', 'kandidat');
 
         // Declare arrayJS sebelum foreach
         $arrayJS = array();
@@ -77,7 +79,7 @@ class Dashboard extends CI_Controller
                 $a = array(
                     'idKandidat' => $row->idkandidat,
                     'noUrut' => $row->nourut,
-                    'organisasi' => $row->organisasi,
+                    // 'organisasi' => $row->organisasi,
                     'nama' => $row->nama,
                     'jumlahSuara' => $jumlahSuara,
                     'foto' => $row->foto,
@@ -86,6 +88,7 @@ class Dashboard extends CI_Controller
                 $arrayJS[] = $a;
             };
         }
+     
 
         $data = array(
             'jumlahKelas' => $jumlahKelas,
@@ -93,6 +96,7 @@ class Dashboard extends CI_Controller
             'jumlahKandidat' => $jumlahKandidat,
             'jumlahSuaraMasuk' => $jumlahSuaraMasuk,
             'kandidatData' => $arrayJS,
+            // 'kandidatdpmData' => $arrayJSa,
         );
 
         // load dashboard view
