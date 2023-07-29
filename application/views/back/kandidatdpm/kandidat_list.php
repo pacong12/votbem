@@ -26,24 +26,31 @@
                             </div> -->
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <div id="infoMessage"><?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?></div>
+                                <div id="infoMessage">
+                                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <a href="<?php echo base_url('admin/kandidatdpm/create') ?>" class="btn btn-md bg-blue btn-flat"><i class="fa fa-plus"> Create</i></a>
+                                        <a href="<?php echo base_url('admin/kandidatdpm/create') ?>"
+                                            class="btn btn-md bg-blue btn-flat"><i class="fa fa-plus"> Create</i></a>
                                     </div>
                                     <div class="col-sm-6 text-right">
-                                        <form action="<?php echo base_url('admin/kandidatdpm/index'); ?>" class="form-inline" method="get">
+                                        <form action="<?php echo base_url('admin/kandidatdpm/index'); ?>"
+                                            class="form-inline" method="get">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
+                                                <input type="text" class="form-control" name="q"
+                                                    value="<?php echo $q; ?>">
                                                 <span class="input-group-btn">
                                                     <?php
                                                     if ($q <> '') {
                                                         ?>
-                                                        <a href="<?php echo base_url('admin/kandidatdpm'); ?>" class="btn btn-default">Reset</a>
+                                                    <a href="<?php echo base_url('admin/kandidatdpm'); ?>"
+                                                        class="btn btn-default">Reset</a>
                                                     <?php
                                                     }
                                                     ?>
-                                                    <button class="btn btn-flat btn-primary" type="submit">Search</button>
+                                                    <button class="btn btn-flat btn-primary"
+                                                        type="submit">Search</button>
                                                 </span>
                                             </div>
                                         </form>
@@ -65,29 +72,53 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($kandidat_data as $kandidatdpm) : ?>
-                                            <tr>
-                                                <td width="10px"><?php echo htmlspecialchars(++$start, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php echo htmlspecialchars($kandidatdpm->nama, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php echo htmlspecialchars($kandidatdpm->nourut, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php echo htmlspecialchars($kandidatdpm->jumlahsuara, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <!-- <td><?php echo htmlspecialchars($kandidatdpm->organisasi, ENT_QUOTES, 'UTF-8'); ?></td> -->
-                                                <td><?php echo $kandidatdpm->visi ?></td>
-                                                <td><?php echo $kandidatdpm->misi ?></td>
-                                                <td><img height="50px" src="<?php echo base_url('assets/uploads/kandidatdpm/' . $kandidatdpm->foto) ?>"></td>
-                                                <td class="text-center"><?php echo ($kandidatdpm->status) ? anchor("admin/kandidatdpm/deactivate/" . $kandidatdpm->idkandidatbem, 'Active', 'class="label label-info"') : anchor("admin/kandidatdpm/activate/" . $kandidatdpm->idkandidatbem, 'Inactive', 'class="label label-danger"'); ?></td>
-                                                <td class="text-center">
-                                                    <a href="<?php echo base_url('admin/kandidatdpm/read/' . $kandidatdpm->idkandidatbem) ?>" class="btn btn-sm btn-flat btn-info"><i class="fa fa-search"></i></a>
-                                                    <a href="<?php echo base_url('admin/kandidatdpm/edit/' . $kandidatdpm->idkandidatbem) ?>" class="btn btn-sm btn-flat bg-orange"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-sm btn-flat btn-danger" data-whatever="<?php echo base_url('admin/kandidatdpm/delete/' . $kandidatdpm->idkandidatbem) ?>" data-toggle="modal" data-target="#modal-danger"><i class="fa fa-trash"></i></button>
-                                                </td>
-                                            </tr>
+                                        <?php foreach ($kandidat_data as $kandidatdpm): ?>
+                                        <tr>
+                                            <td width="10px">
+                                                <?php echo htmlspecialchars(++$start, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlspecialchars($kandidatdpm->nama, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlspecialchars($kandidatdpm->nourut, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo htmlspecialchars($kandidatdpm->jumlahsuara, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <!-- <td><?php echo htmlspecialchars($kandidatdpm->organisasi, ENT_QUOTES, 'UTF-8'); ?></td> -->
+                                            <td>
+                                                <?php echo $kandidatdpm->visi ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $kandidatdpm->misi ?>
+                                            </td>
+                                            <td><img height="50px"
+                                                    src="<?php echo base_url('assets/uploads/kandidatdpm/' . $kandidatdpm->foto) ?>">
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo ($kandidatdpm->status) ? anchor("admin/kandidatdpm/deactivate/" . $kandidatdpm->idkandidatdpm, 'Active', 'class="label label-info"') : anchor("admin/kandidatdpm/activate/" . $kandidatdpm->idkandidatdpm, 'Inactive', 'class="label label-danger"'); ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="<?php echo base_url('admin/kandidatdpm/read/' . $kandidatdpm->idkandidatdpm) ?>"
+                                                    class="btn btn-sm btn-flat btn-info"><i
+                                                        class="fa fa-search"></i></a>
+                                                <a href="<?php echo base_url('admin/kandidatdpm/edit/' . $kandidatdpm->idkandidatdpm) ?>"
+                                                    class="btn btn-sm btn-flat bg-orange"><i class="fa fa-edit"></i></a>
+                                                <button type="button" class="btn btn-sm btn-flat btn-danger"
+                                                    data-whatever="<?php echo base_url('admin/kandidatdpm/delete/' . $kandidatdpm->idkandidatdpm) ?>"
+                                                    data-toggle="modal" data-target="#modal-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </td>
+                                        </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
                                 <div class="row">
                                     <div class="col-sm-5">
-                                        <a class="btn btn-sm btn-info btn-flat">Total Record : <?php echo $total_rows ?></a>
+                                        <a class="btn btn-sm btn-info btn-flat">Total Record :
+                                            <?php echo $total_rows ?>
+                                        </a>
                                     </div>
                                     <div class="col-sm-7 text-right">
                                         <?php echo $pagination ?>
@@ -128,37 +159,41 @@
 
 <?php $this->load->view('back/js') ?>
 <!-- DataTables -->
-<script src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net/js/jquery.dataTables.min.js">
+</script>
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js">
+</script>
 <script>
-    // DataTables Script
-    $(function() {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging': false,
-            'lengthChange': true,
-            'searching': false,
-            'ordering': true,
-            'info': false,
-            'autoWidth': true
-        })
+// DataTables Script
+$(function() {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+        'paging': false,
+        'lengthChange': true,
+        'searching': false,
+        'ordering': true,
+        'info': false,
+        'autoWidth': true
     })
-    // infoMassages Timer
-    window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function() {
-            $(this).remove();
-        });
-    }, 2000);
-    // Modal Controller
-    $('#modal-danger').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var link = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        // modal.find('#saveChanges').val(link)
-        var modal = document.getElementById("saveChanges")
-        modal.setAttribute("href", link);
-    })
+})
+// infoMassages Timer
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function() {
+        $(this).remove();
+    });
+}, 2000);
+// Modal Controller
+$('#modal-danger').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var link = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    // modal.find('#saveChanges').val(link)
+    var modal = document.getElementById("saveChanges")
+    modal.setAttribute("href", link);
+})
 </script>
 
 </body>
