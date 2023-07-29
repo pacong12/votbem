@@ -60,7 +60,7 @@
                             </div>
                             
                         
-                            <input type="hidden" name="idkandidatbem" value="<?php echo $idkandidatbem ?>" />
+                            <input type="hidden" name="idkandidatdpm" value="<?php echo $idkandidatdpm ?>" />
                         </div>
                         <div class="box-footer">
                             <div class="pull-right">

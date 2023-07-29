@@ -59,7 +59,7 @@ class Kandidatdpm extends CI_Controller
         $row = $this->Kandidatdpm_model->get_by_id($id);
         if ($row) {
             $data = array(
-                'idkandidatbem' => $row->idkandidatbem,
+                'idkandidatdpm' => $row->idkandidatdpm,
                 // 'organisasi' => $row->organisasi,
                 'nama' => $row->nama,
                 'nourut' => $row->nourut,
@@ -86,7 +86,7 @@ class Kandidatdpm extends CI_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('admin/kandidatdpm/create_action'),
-            'idkandidatbem' => set_value('idkandidatbem'),
+            'idkandidatdpm' => set_value('idkandidatdpm'),
             // 'organisasi' => set_value('organisasi'),
             'nama' => set_value('nama'),
             'nourut' => set_value('nourut'),
@@ -157,7 +157,7 @@ class Kandidatdpm extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('admin/kandidatdpm/update_action'),
-                'idkandidatbem' => set_value('idkandidatbem', $row->idkandidatbem),
+                'idkandidatdpm' => set_value('idkandidatdpm', $row->idkandidatdpm),
                 // 'organisasi' => set_value('organisasi', $row->organisasi),
                 'nama' => set_value('nama', $row->nama),
                 'nourut' => set_value('nourut', $row->nourut),
@@ -190,7 +190,7 @@ class Kandidatdpm extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->edit($this->input->post('idkandidatbem', TRUE));
+            $this->edit($this->input->post('idkandidatdpm', TRUE));
         } else {
 
             // 0 => ‘There is no error, the file uploaded with success’,
@@ -235,7 +235,7 @@ class Kandidatdpm extends CI_Controller
                     );
 
                     // Update Database
-                    $this->Kandidatdpm_model->update($this->input->post('idkandidatbem', TRUE), $data);
+                    $this->Kandidatdpm_model->update($this->input->post('idkandidatdpm', TRUE), $data);
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-info alert-dismissible">
@@ -261,7 +261,7 @@ class Kandidatdpm extends CI_Controller
                
 
                 // Update Database
-                $this->Kandidatdpm_model->update($this->input->post('idkandidatbem', TRUE), $data);
+                $this->Kandidatdpm_model->update($this->input->post('idkandidatdpm', TRUE), $data);
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-info alert-dismissible">
@@ -353,7 +353,7 @@ class Kandidatdpm extends CI_Controller
         $this->form_validation->set_rules('visi', 'visi', 'trim|required');
         $this->form_validation->set_rules('misi', 'misi', 'trim|required');
 
-        $this->form_validation->set_rules('idkandidatbem', 'idkandidatbem', 'trim');
+        $this->form_validation->set_rules('idkandidatdpm', 'idkandidatdpm', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 

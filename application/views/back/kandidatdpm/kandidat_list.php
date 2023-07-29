@@ -8,7 +8,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Pemilih
+                Data Kandidat DPM
                 <small>List</small>
             </h1>
             <ol class="breadcrumb">
@@ -75,11 +75,11 @@
                                                 <td><?php echo $kandidatdpm->visi ?></td>
                                                 <td><?php echo $kandidatdpm->misi ?></td>
                                                 <td><img height="50px" src="<?php echo base_url('assets/uploads/kandidatdpm/' . $kandidatdpm->foto) ?>"></td>
-                                                <td class="text-center"><?php echo ($kandidatdpm->status) ? anchor("admin/kandidatdpm/deactivate/" . $kandidatdpm->idkandidatbem, 'Active', 'class="label label-info"') : anchor("admin/kandidatdpm/activate/" . $kandidatdpm->idkandidatbem, 'Inactive', 'class="label label-danger"'); ?></td>
+                                                <td class="text-center"><?php echo ($kandidatdpm->status) ? anchor("admin/kandidatdpm/deactivate/" . $kandidatdpm->idkandidatdpm, 'Active', 'class="label label-info"') : anchor("admin/kandidatdpm/activate/" . $kandidatdpm->idkandidatdpm, 'Inactive', 'class="label label-danger"'); ?></td>
                                                 <td class="text-center">
-                                                    <a href="<?php echo base_url('admin/kandidatdpm/read/' . $kandidatdpm->idkandidatbem) ?>" class="btn btn-sm btn-flat btn-info"><i class="fa fa-search"></i></a>
-                                                    <a href="<?php echo base_url('admin/kandidatdpm/edit/' . $kandidatdpm->idkandidatbem) ?>" class="btn btn-sm btn-flat bg-orange"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-sm btn-flat btn-danger" data-whatever="<?php echo base_url('admin/kandidatdpm/delete/' . $kandidatdpm->idkandidatbem) ?>" data-toggle="modal" data-target="#modal-danger"><i class="fa fa-trash"></i></button>
+                                                    <a href="<?php echo base_url('admin/kandidatdpm/read/' . $kandidatdpm->idkandidatdpm) ?>" class="btn btn-sm btn-flat btn-info"><i class="fa fa-search"></i></a>
+                                                    <a href="<?php echo base_url('admin/kandidatdpm/edit/' . $kandidatdpm->idkandidatdpm) ?>" class="btn btn-sm btn-flat bg-orange"><i class="fa fa-edit"></i></a>
+                                                    <button type="button" class="btn btn-sm btn-flat btn-danger" data-whatever="<?php echo base_url('admin/kandidatdpm/delete/' . $kandidatdpm->idkandidatdpm) ?>" data-toggle="modal" data-target="#modal-danger"><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

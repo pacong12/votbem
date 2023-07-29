@@ -7,7 +7,7 @@ class Kandidatdpm_model extends CI_Model
 {
 
     public $table = 'kandidatdpm';
-    public $id = 'idkandidatbem';
+    public $id = 'idkandidatdpm';
     public $order = 'DESC';
 
     function __construct()
@@ -32,7 +32,7 @@ class Kandidatdpm_model extends CI_Model
     // get total rows
     function total_rows($q = NULL)
     {
-        $this->db->like('idkandidatbem', $q);
+        $this->db->like('idkandidatdpm', $q);
         // $this->db->or_like('organisasi', $q);
         $this->db->or_like('nama', $q);
         $this->db->or_like('nourut', $q);
@@ -49,7 +49,7 @@ class Kandidatdpm_model extends CI_Model
     function get_limit_data($limit, $start = 0, $q = NULL)
     {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('idkandidatbem', $q);
+        $this->db->like('idkandidatdpm', $q);
         // $this->db->or_like('organisasi', $q);
         $this->db->or_like('nama', $q);
         $this->db->or_like('nourut', $q);

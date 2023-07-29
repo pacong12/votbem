@@ -8,7 +8,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Pemilih
+                Data Kandidat BEM
                 <small>List</small>
             </h1>
             <ol class="breadcrumb">
