@@ -96,7 +96,7 @@
 
             <!-- Main Row -->
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">Data Suara Masuk Untuk BEM</h3>
@@ -108,12 +108,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
             <!-- /.row -->
 
             <!-- Main Row -->
-            <div class="row">
-                <div class="col-md-12">
+        
+                <div class="col-md-6">
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">Data Suara Masuk Untuk DPM</h3>
