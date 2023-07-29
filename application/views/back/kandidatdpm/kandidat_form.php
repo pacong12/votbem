@@ -28,44 +28,63 @@
                         <?php echo form_open_multipart($action); ?>
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="varchar">Nama <?php echo form_error('nama') ?></label>
-                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>" />
+                                <label for="varchar">Nama
+                                    <?php echo form_error('nama') ?>
+                                </label>
+                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama"
+                                    value="<?php echo $nama; ?>" />
                             </div>
                             <div class="form-group">
-                                <label for="varchar">No Urut <?php echo form_error('nourut') ?></label>
-                                <input type="text" class="form-control" name="nourut" id="nourut" placeholder="No urut" value="<?php echo $nourut; ?>" />
+                                <label for="varchar">No Urut
+                                    <?php echo form_error('nourut') ?>
+                                </label>
+                                <input type="text" class="form-control" name="nourut" id="nourut" placeholder="No urut"
+                                    value="<?php echo $nourut; ?>" />
                             </div>
                             <!-- <div class="form-group">
                                 <label for="varchar">Organisasi <?php echo form_error('organisasi') ?></label>
                                 <div class="form-group">
-                                    <input name="organisasi" id="organisasi" type="radio" class="form-control square-blue" <?php if ($organisasi == 'OSIS') echo "checked"; ?> value="OSIS" />
+                                    <input name="organisasi" id="organisasi" type="radio" class="form-control square-blue" <?php if ($organisasi == 'OSIS')
+                                        echo "checked"; ?> value="OSIS" />
                                     <label for="organisasi">OSIS</label>
 
-                                    <input name="organisasi" id="organisasi" type="radio" class="form-control square-blue" <?php if ($organisasi == 'MPK') echo 'checked'; ?> value="MPK" />
+                                    <input name="organisasi" id="organisasi" type="radio" class="form-control square-blue" <?php if ($organisasi == 'MPK')
+                                        echo 'checked'; ?> value="MPK" />
                                     <label for="organisasi">MPK</label>
                                 </div>
                             </div> -->
                             <div class="form-group">
-                                <label for="visi">Visi <?php echo form_error('visi') ?></label>
-                                <textarea class="form-control textarea" name="visi" id="visi" placeholder="Visi"><?php echo $visi; ?></textarea>
+                                <label for="visi">Visi
+                                    <?php echo form_error('visi') ?>
+                                </label>
+                                <textarea class="form-control textarea" name="visi" id="visi"
+                                    placeholder="Visi"><?php echo $visi; ?></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="misi">Misi <?php echo form_error('misi') ?></label>
-                                <textarea class="form-control textarea" name="misi" id="misi" placeholder="Misi"><?php echo $misi; ?></textarea>
+                                <label for="misi">Misi
+                                    <?php echo form_error('misi') ?>
+                                </label>
+                                <textarea class="form-control textarea" name="misi" id="misi"
+                                    placeholder="Misi"><?php echo $misi; ?></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="varchar">Foto <?php echo form_error('foto') ?></label>
+                                <label for="varchar">Foto
+                                    <?php echo form_error('foto') ?>
+                                </label>
                                 <input type="file" class="custom-file-input" id="validatedCustomFile" name="image">
                                 <p class="help-block">.jpg .png</p>
                             </div>
-                            
-                        
+
+
                             <input type="hidden" name="idkandidatdpm" value="<?php echo $idkandidatdpm ?>" />
                         </div>
                         <div class="box-footer">
                             <div class="pull-right">
-                                <a href="<?php echo base_url('admin/kandidatdpm') ?>" class="btn btn-default ">Cancel</a>
-                                <button type="submit" class="btn btn-success "><?php echo $button ?></button>
+                                <a href="<?php echo base_url('admin/kandidatdpm') ?>"
+                                    class="btn btn-default ">Cancel</a>
+                                <button type="submit" class="btn btn-success ">
+                                    <?php echo $button ?>
+                                </button>
                             </div>
                         </div>
                         </form>
@@ -80,10 +99,14 @@
 
 <?php $this->load->view('back/js') ?>
 <!-- Bootstrap WYSIHTML5 -->
-<link rel="stylesheet" href="<?php echo base_url('assets/template/backend/') ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-<script src="<?php echo base_url('assets/template/backend/') ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<link rel="stylesheet"
+    href="<?php echo base_url('assets/template/backend/') ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js">
+    </script>
 <!-- Select2 -->
-<script src="<?php echo base_url('assets/template/backend/') ?>bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="<?php echo base_url('assets/template/backend/') ?>bower_components/select2/dist/js/select2.full.min.js">
+</script>
 <!-- iCheck 1.0.1 -->
 <link href="<?php echo base_url('assets/template/backend/') ?>plugins/iCheck/square/blue.css" rel="stylesheet">
 <script src="<?php echo base_url('assets/template/backend/') ?>plugins/iCheck/icheck.min.js"></script>
@@ -94,20 +117,20 @@
         radioClass: 'iradio_square-blue'
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.js-example-basic-single').select2({
             placeholder: 'Select an option',
         });;
     });
 
     // infoMassages Timer
-    window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function() {
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
             $(this).remove();
         });
     }, 2000);
 
-    $(function() {
+    $(function () {
         //bootstrap WYSIHTML5 - text editor
         $('.textarea').wysihtml5()
     })

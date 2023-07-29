@@ -17,7 +17,7 @@ class Kandidatdpm extends CI_Controller
             // redirect them to the login page
             redirect('admin/auth/login', 'refresh');
         } else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
-        {   // redirect them to the home page because they must be an administrator to view this
+        { // redirect them to the home page because they must be an administrator to view this
             show_error('You must be an administrator to view this page.');
         }
     }
@@ -51,7 +51,7 @@ class Kandidatdpm extends CI_Controller
             'start' => $start,
         );
         $this->load->view('back/kandidatdpm/kandidat_list', $data);
-    
+
     }
 
     public function read($id)
@@ -59,7 +59,7 @@ class Kandidatdpm extends CI_Controller
         $row = $this->Kandidatdpm_model->get_by_id($id);
         if ($row) {
             $data = array(
-                'idkandidatdpm' => $row->idkandidatdpm,
+                'idkandidatbem' => $row->idkandidatbem,
                 // 'organisasi' => $row->organisasi,
                 'nama' => $row->nama,
                 'nourut' => $row->nourut,
@@ -131,7 +131,7 @@ class Kandidatdpm extends CI_Controller
                     'misi' => $this->input->post('misi', TRUE),
                     'foto' => $fileName,
                     'status' => '1',
-                    
+
                 );
 
                 $this->Kandidatdpm_model->insert($data);
@@ -186,7 +186,7 @@ class Kandidatdpm extends CI_Controller
 
         $this->load->helper('file');
         $this->load->library('upload', $config);
-        $this->form_validation->set_rules('image','Upload File', 'callback_checkFileValidation');
+        $this->form_validation->set_rules('image', 'Upload File', 'callback_checkFileValidation');
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
@@ -204,52 +204,51 @@ class Kandidatdpm extends CI_Controller
 
             // Cek kode error terlebih dahulu
             // if ($_FILES['image']['error'] != 4) {
-                // Jika file tidak kosong lakukan sesuatu disini
-                // Anda bisa update data dan gambar
-                // atau aksi lain
+            // Jika file tidak kosong lakukan sesuatu disini
+            // Anda bisa update data dan gambar
+            // atau aksi lain
 
-                if ($this->upload->do_upload('image')) {
+            if ($this->upload->do_upload('image')) {
 
-                    $upload_data = $this->upload->data();
-                    $fileName = $upload_data['file_name']; //Nama File
-                    $fileType = $upload_data['file_ext']; //Extension File
-                    
-                    // File Stored Path
-                    $filePath = $upload_data['full_path'];
+                $upload_data = $this->upload->data();
+                $fileName = $upload_data['file_name']; //Nama File
+                $fileType = $upload_data['file_ext']; //Extension File
 
-                    // Get passData
-                    // $passData = $this->kandidatdpm->get_by_id($this->input->post('idkandidat', true));
-                    // delete image sebelumnya
-                    // var_dump($passData);
-                    // unlink('./assets/uploads/kandidat/'.$passData->foto);
-                    
-                    $data = array(
-                        // 'organisasi' => $this->input->post('organisasi', TRUE),
-                        'nama' => $this->input->post('nama', TRUE),
-                        'nourut' => $this->input->post('nourut', TRUE),
-                        'jumlahsuara' => $this->input->post('jumlahsuara', TRUE),
-                        'visi' => $this->input->post('visi', TRUE),
-                        'misi' => $this->input->post('misi', TRUE),
-                        'foto' => $fileName,
-                        // 'filefoto' => base_url().$filePath
-                    );
+                // File Stored Path
+                $filePath = $upload_data['full_path'];
+
+                // Get passData
+                // $passData = $this->kandidatdpm->get_by_id($this->input->post('idkandidat', true));
+                // delete image sebelumnya
+                // var_dump($passData);
+                // unlink('./assets/uploads/kandidat/'.$passData->foto);
+
+                $data = array(
+                    // 'organisasi' => $this->input->post('organisasi', TRUE),
+                    'nama' => $this->input->post('nama', TRUE),
+                    'nourut' => $this->input->post('nourut', TRUE),
+                    'jumlahsuara' => $this->input->post('jumlahsuara', TRUE),
+                    'visi' => $this->input->post('visi', TRUE),
+                    'misi' => $this->input->post('misi', TRUE),
+                    'foto' => $fileName,
+                    // 'filefoto' => base_url().$filePath
+                );
 
                     // Update Database
-                    $this->Kandidatdpm_model->update($this->input->post('idkandidatdpm', TRUE), $data);
+                    $this->Kandidatdpm_model->update($this->input->post('idkandidatbem', TRUE), $data);
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-info alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-info"></i> Alert!</h4>
                         Update Record Success </div>'
-                    );
-                    redirect('admin/kandidatdpm', 'refresh');
+                );
+                redirect('admin/kandidatdpm', 'refresh');
                 // } else {
                 //     // Jika validasi file gagal. Kirim error ke flashdata massages dan redirect ke index
                 //     $error = array('error' => $this->upload->display_errors());
                 //     $this->edit($this->input->post('idkandidat', TRUE));
-                }
-            else {
+            } else {
                 $data = array(
                     // 'organisasi' => $this->input->post('organisasi', TRUE),
                     'nama' => $this->input->post('nama', TRUE),
@@ -258,7 +257,7 @@ class Kandidatdpm extends CI_Controller
                     'visi' => $this->input->post('visi', TRUE),
                     'misi' => $this->input->post('misi', TRUE),
                 );
-               
+
 
                 // Update Database
                 $this->Kandidatdpm_model->update($this->input->post('idkandidatdpm', TRUE), $data);
