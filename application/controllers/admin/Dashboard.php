@@ -32,7 +32,7 @@ class Dashboard extends CI_Controller
             // redirect them to the login page
             redirect('admin/auth/login', 'refresh');
         } else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
-        {   // redirect them to the home page because they must be an administrator to view this
+        { // redirect them to the home page because they must be an administrator to view this
             show_error('You must be an administrator to view this page.');
         }
     }
@@ -55,12 +55,12 @@ class Dashboard extends CI_Controller
         $jumlahDataPemilih = $this->Dashboard_model->total_rows('data_pemilih');
         // Jumlah Kandidat
         $jumlahKandidat = $this->Dashboard_model->total_rows('kandidat');
-        // $jumlahKandidatdpm = $this->Dashboard_model->total_rows('kandidatdpm');
+        $jumlahKandidatDpm = $this->Dashboard_model->total_rows('kandidatdpm');
         // Menghitung jumlah suara yang sudah masuk ke dalam database
         $jumlahSuaraMasuk = $this->Dashboard_model->total_rows('data_pemilihan');
         // Mengambil semua kandidat data
         $kandidatData = $this->Dashboard_model->get_all('nourut', 'kandidat');
-        // $kandidatdpmData = $this->Dashboard_model->get_all('nourut', 'kandidat');
+        $kandidatDataDpm = $this->Dashboard_model->get_all('nourut', 'kandidatdpm');
 
         // Declare arrayJS sebelum foreach
         $arrayJS = array();
@@ -86,17 +86,43 @@ class Dashboard extends CI_Controller
                 );
                 // Menyimpan semua data dalam bentuk array
                 $arrayJS[] = $a;
-            };
+            }
+            ;
         }
-     
+        $arrayJSDpm = array();
+        if ($jumlahKandidatDpm > 0) {
+            foreach ($kandidatDataDpm as $row) {
+                // Menghitung perolehan suara dari database
+                // Berdasarkan idkandidat yang ada
+                $jumlahSuara = $this->Dashboard_model->tampil_data_dpm('idkandidatdpm', $row->idkandidatdpm, 'data_pemilihan_dpm');
+                $updateData = array(
+                    'jumlahsuara' => $jumlahSuara,
+                );
+                // Update jumlah suara counter ke database
+                $this->Dashboard_model->update('idkandidatdpm', $row->idkandidatdpm, 'kandidat', $updateData);
+                // Data ini digunakan untuk menunjukan hasil perolehan suara di dalam dashboard admin
+                $a = array(
+                    'idKandidatdpm' => $row->idkandidatdpm,
+                    'noUrut' => $row->nourut,
+                    // 'organisasi' => $row->organisasi,
+                    'nama' => $row->nama,
+                    'jumlahSuara' => $jumlahSuara,
+                    'foto' => $row->foto,
+                );
+                // Menyimpan semua data dalam bentuk array
+                $arrayJSDpm[] = $a;
+            }
+            ;
+        }
 
         $data = array(
             'jumlahKelas' => $jumlahKelas,
             'jumlahDataPemilih' => $jumlahDataPemilih,
             'jumlahKandidat' => $jumlahKandidat,
+            'jumlahKandidatDpm' => $jumlahKandidatDpm,
             'jumlahSuaraMasuk' => $jumlahSuaraMasuk,
             'kandidatData' => $arrayJS,
-            // 'kandidatdpmData' => $arrayJSa,
+            'kandidatDataDpm' => $arrayJSDpm,
         );
 
         // load dashboard view
