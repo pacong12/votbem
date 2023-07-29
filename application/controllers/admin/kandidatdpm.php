@@ -59,7 +59,7 @@ class Kandidatdpm extends CI_Controller
         $row = $this->Kandidatdpm_model->get_by_id($id);
         if ($row) {
             $data = array(
-                'idkandidatdpm' => $row->idkandidatdpm,
+                'idkandidatbem' => $row->idkandidatbem,
                 // 'organisasi' => $row->organisasi,
                 'nama' => $row->nama,
                 'nourut' => $row->nourut,
@@ -234,11 +234,11 @@ class Kandidatdpm extends CI_Controller
                     // 'filefoto' => base_url().$filePath
                 );
 
-                // Update Database
-                $this->Kandidatdpm_model->update($this->input->post('idkandidatdpm', TRUE), $data);
-                $this->session->set_flashdata(
-                    'message',
-                    '<div class="alert alert-info alert-dismissible">
+                    // Update Database
+                    $this->Kandidatdpm_model->update($this->input->post('idkandidatbem', TRUE), $data);
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-info alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-info"></i> Alert!</h4>
                         Update Record Success </div>'
