@@ -21,35 +21,57 @@
                                 <tbody>
                                     <tr>
                                         <td><strong>NIS</strong></td>
-                                        <td><?php echo $nis; ?></td>
+                                        <td>
+                                            <?php echo $nis; ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Username</strong></td>
-                                        <td><?php echo $username; ?></td>
+                                        <td>
+                                            <?php echo $username; ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Password</strong></td>
-                                        <td><?php echo $password; ?></td>
+                                        <td>
+                                            <?php echo $password; ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Nama Lengkap</strong></td>
-                                        <td><?php print_r($nama); ?></td>
+                                        <td>
+                                            <?php print_r($nama); ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Kelas</strong></td>
-                                        <td><?php print_r($kelas); ?></td>
+                                        <td>
+                                            <?php print_r($kelas); ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>L/P</strong></td>
-                                        <td><?php echo $jk; ?></td>
+                                        <td>
+                                            <?php echo $jk; ?>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Status</strong></td>
-                                        <td><a class="label label-success"><?php echo $status; ?></a></td>
+                                        <td><strong>Status Memilih BEM</strong></td>
+                                        <td><a class="label label-success">
+                                                <?php echo $status; ?>
+                                            </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Status Memilih DPM</strong></td>
+                                        <td><a class="label label-success">
+                                                <?php echo $statusdpm; ?>
+                                            </a></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Aktif</strong></td>
-                                        <td><?php ($aktif) ? print_r('<a class="label label-info disabled">Active</a>') : print_r('<a class="label label-danger disabled">Inactive</a>') ?></td>
+                                        <td>
+                                            <?php ($aktif) ? print_r('<a class="label label-info disabled">Active</a>') : print_r('<a class="label label-danger disabled">Inactive</a>') ?>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -73,11 +95,13 @@
 
 <?php $this->load->view('back/js') ?>
 <!-- DataTables -->
-<script src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script>
     // DataTables Script
-    $(function() {
+    $(function () {
         $('#example1').DataTable()
         $('#example2').DataTable({
             'paging': false,

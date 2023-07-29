@@ -7,117 +7,117 @@
     <title>Data Pemilih</title>
 
     <style>
-        /* .page-header,
+    /* .page-header,
         .page-header-space {
             height: 100px;
         } */
 
-        .page-footer,
-        .page-footer-space {
-            height: 50px;
+    .page-footer,
+    .page-footer-space {
+        height: 50px;
 
+    }
+
+    .page-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        /* for demo */
+        background: rgba(0, 0, 0, 0);
+        border: 0px;
+        /* for demo */
+        z-index: 100000;
+    }
+
+    .page-header {
+        position: fixed;
+        top: 0mm;
+        width: 100%;
+        border: 0px;
+        /* for demo */
+        background: rgba(0, 0, 0, 0);
+        /* for demo */
+        z-index: 100000;
+    }
+
+    .font-weight-bold {
+        font-weight: bolder;
+    }
+
+    .text-italic {
+        font-style: italic;
+    }
+
+    .page {
+        page-break-after: always;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    @page {
+        margin: 10mm 20mm 10mm 20mm;
+        size: A4;
+    }
+
+    h4 {
+        margin: 0;
+        font-weight: bolder;
+    }
+
+    .innerDOC {
+        margin-bottom: 10px;
+    }
+
+    .innerDOC td {
+        font-size: 16px;
+    }
+
+    pre {
+        display: block;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        border-radius: 0;
+        white-space: pre;
+    }
+
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table,
+    .table th,
+    .table td {
+        border: 1px solid black;
+    }
+
+    @media print {
+        thead {
+            display: table-header-group;
         }
 
-        .page-footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            /* for demo */
-            background: rgba(0, 0, 0, 0);
-            border: 0px;
-            /* for demo */
-            z-index: 100000;
+        tfoot {
+            display: table-footer-group;
         }
 
-        .page-header {
-            position: fixed;
-            top: 0mm;
-            width: 100%;
-            border: 0px;
-            /* for demo */
-            background: rgba(0, 0, 0, 0);
-            /* for demo */
-            z-index: 100000;
+        button {
+            display: none;
         }
 
-        .font-weight-bold {
-            font-weight: bolder;
-        }
-
-        .text-italic {
-            font-style: italic;
-        }
-
-        .page {
-            page-break-after: always;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        p {
-            font-size: 16px;
-        }
-
-        @page {
-            margin: 10mm 20mm 10mm 20mm;
-            size: A4;
-        }
-
-        h4 {
+        body {
             margin: 0;
-            font-weight: bolder;
         }
-
-        .innerDOC {
-            margin-bottom: 10px;
-        }
-
-        .innerDOC td {
-            font-size: 16px;
-        }
-
-        pre {
-            display: block;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            padding: 0;
-            margin: 0;
-            font-size: 16px;
-            background-color: rgba(0, 0, 0, 0);
-            border: none;
-            border-radius: 0;
-            white-space: pre;
-        }
-
-        .table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        .table,
-        .table th,
-        .table td {
-            border: 1px solid black;
-        }
-
-        @media print {
-            thead {
-                display: table-header-group;
-            }
-
-            tfoot {
-                display: table-footer-group;
-            }
-
-            button {
-                display: none;
-            }
-
-            body {
-                margin: 0;
-            }
-        }
+    }
     </style>
 </head>
 
@@ -164,19 +164,25 @@
                                     <th>Nama</th>
                                     <th>Kelas</th>
                                     <th width="25px">L/P</th>
-                                    <th>Status</th>
+                                    <th>Status Memilih BEM</th>
+                                    <th>Status Memilih DPM</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($data_pemilih_data as $data_pemilih) : ?>
-                                    <tr>
-                                        <td style="text-align: center"><?php echo htmlspecialchars(++$start, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td style="text-align: center"><?php echo htmlspecialchars($data_pemilih->nis, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($data_pemilih->nama, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td style="text-align: center"><?php echo htmlspecialchars($data_pemilih->kelas, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td width="10px" style="text-align: center"><?php echo htmlspecialchars($data_pemilih->jk, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td style="text-align: center"><?php echo $data_pemilih->status ?></td>
-                                    </tr>
+                                <tr>
+                                    <td style="text-align: center">
+                                        <?php echo htmlspecialchars(++$start, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td style="text-align: center">
+                                        <?php echo htmlspecialchars($data_pemilih->nis, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php echo htmlspecialchars($data_pemilih->nama, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td style="text-align: center">
+                                        <?php echo htmlspecialchars($data_pemilih->kelas, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td width="10px" style="text-align: center">
+                                        <?php echo htmlspecialchars($data_pemilih->jk, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td style="text-align: center"><?php echo $data_pemilih->status ?></td>
+                                    <td style="text-align: center"><?php echo $data_pemilih->statusdpm ?></td>
+                                </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

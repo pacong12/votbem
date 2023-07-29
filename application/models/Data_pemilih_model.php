@@ -42,6 +42,7 @@ class Data_pemilih_model extends CI_Model
         $this->db->or_like('idkelas', $q);
         $this->db->or_like('jk', $q);
         $this->db->or_like('status', $q);
+        $this->db->or_like('statusdpm', $q);
         $this->db->or_like('aktif', $q);
         $this->db->from($this->table);
         return $this->db->count_all_results();
@@ -60,6 +61,7 @@ class Data_pemilih_model extends CI_Model
         $this->db->or_like('idkelas', $q);
         $this->db->or_like('jk', $q);
         $this->db->or_like('status', $q);
+        $this->db->or_like('statusdpm', $q);
         $this->db->or_like('aktif', $q);
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

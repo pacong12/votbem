@@ -6,6 +6,7 @@ if (!defined('BASEPATH'))
 //PhpSpreadsheet
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
 // End load library phpspreadsheet
 
 class Data_pemilih extends CI_Controller
@@ -21,7 +22,7 @@ class Data_pemilih extends CI_Controller
             // redirect them to the login page
             redirect('admin/auth/login', 'refresh');
         } else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
-        {   // redirect them to the home page because they must be an administrator to view this
+        { // redirect them to the home page because they must be an administrator to view this
             show_error('You must be an administrator to view this page.');
         }
     }
@@ -39,7 +40,7 @@ class Data_pemilih extends CI_Controller
             $config['first_url'] = base_url() . 'admin/data_pemilih/index.html';
         }
 
-        $config['per_page'] = 10;
+        $config['per_page'] = 11;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Data_pemilih_model->total_rows($q);
         $data_pemilih = $this->Data_pemilih_model->get_limit_data($config['per_page'], $start, $q);
@@ -73,6 +74,7 @@ class Data_pemilih extends CI_Controller
                 'idkelas' => $row->idkelas,
                 'jk' => $row->jk,
                 'status' => $row->status,
+                'statusdpm' => $row->statusdpm,
                 'aktif' => $row->aktif,
             );
             $this->load->view('back/data_pemilih/data_pemilih_read', $data);
@@ -103,6 +105,7 @@ class Data_pemilih extends CI_Controller
             'idkelas' => set_value('idkelas'),
             'jk' => set_value('jk'),
             'status' => set_value('status'),
+            'statusdpm' => set_value('statusdpm'),
             'aktif' => set_value('aktif'),
             'dd_kelas' => $this->Data_pemilih_model->kelasDropdown(),
             'kelas_selected' => $this->input->post('kelas') ? $this->input->post('kelas') : '', // untuk edit ganti '' menjadi data dari database misalnya $row->kelas
@@ -141,6 +144,7 @@ class Data_pemilih extends CI_Controller
                 'idkelas' => $this->input->post('kelas', TRUE),
                 'jk' => $this->input->post('jk', TRUE),
                 'status' => 'Belum Memilih',
+                'statusdpm' => 'Belum Memilih',
                 'aktif' => '1',
             );
 
@@ -177,6 +181,7 @@ class Data_pemilih extends CI_Controller
                 'idkelas' => set_value('idkelas', $row->idkelas),
                 'jk' => set_value('jk', $row->jk),
                 'status' => set_value('status', $row->status),
+                'statusdpm' => set_value('statusdpm', $row->statusdpm),
                 'aktif' => set_value('aktif', $row->aktif),
                 'dd_kelas' => $this->Data_pemilih_model->kelasDropdown(),
                 'kelas_selected' => $this->input->post('kelas') ? $this->input->post('kelas') : $row->idkelas, // untuk edit ganti '' menjadi data dari database misalnya $row->kelas    
@@ -354,6 +359,7 @@ class Data_pemilih extends CI_Controller
                             'kelas' => $kelas,
                             'jk' => $jk,
                             'status' => 'Belum Memilih',
+                            'statusdpm' => 'Belum Memilih',
                             'aktif' => '1',
                             'idkelas' => $idKelas,
                         );

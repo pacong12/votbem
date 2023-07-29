@@ -19,21 +19,30 @@
         $bootstrapColWidth = 12 / $numOfCols;
         ?>
         <div class="row">
-            <?php foreach ($kandidat_data_dpm as $kandidat) : ?>
+            <?php foreach ($kandidat_data as $kandidat): ?>
                 <div class="col-md-<?php echo $bootstrapColWidth; ?>">
                     <div style="margin-top: 60px" class="card bg-light text-center">
-                        <img class="card-img-top" style="object-fit:cover" height="245px" src="<?php echo base_url('assets/uploads/kandidatdpm/') . $kandidat->foto ?>" alt="Card image cap">
+                        <img class="card-img-top" style="object-fit:cover" height="245px"
+                            src="<?php echo base_url('assets/uploads/kandidatdpm/') . $kandidat->foto ?>"
+                            alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title "><?php echo $kandidat->nourut ?></h5>
-                            <p class="card-text"><?php echo $kandidat->nama ?></p>
+                            <h5 class="card-title ">
+                                <?php echo $kandidat->nourut ?>
+                            </h5>
+                            <p class="card-text">
+                                <?php echo $kandidat->nama ?>
+                            </p>
                         </div>
                         <div class="card-footer">
-                            <a href="<?php echo base_url('home/doVote/' . $kandidat->idkandidatdpm) ?>" class="btn btn-flat btn-primary">Vote</a> </div>
+                            <a href="<?php echo base_url('home/doVote/' . $kandidat->idkandidatdpm) ?>"
+                                class="btn btn-flat btn-primary">Vote</a>
+                        </div>
                     </div>
                 </div>
-            <?php
+                <?php
                 $rowCount++;
-                if ($rowCount % $numOfCols == 0) echo '</div><div class="row">';
+                if ($rowCount % $numOfCols == 0)
+                    echo '</div><div class="row">';
             endforeach ?>
         </div>
     </div>

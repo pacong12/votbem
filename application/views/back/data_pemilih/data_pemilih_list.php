@@ -26,27 +26,38 @@
                             </div> -->
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <div id="infoMessage"><?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?></div>
+                                <div id="infoMessage">
+                                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <a href="<?php echo base_url('admin/data_pemilih/create') ?>" class="btn btn-md bg-blue btn-flat"><i class="fa fa-plus"> Create</i></a>
-                                        <a href="<?php echo base_url('admin/data_pemilih/import') ?>" class="btn btn-md bg-green btn-flat"><i class="fa fa-file-excel-o"> Import</i></a>
-                                        <a href="<?php echo base_url('admin/data_pemilih/exportData') ?>" class="btn btn-md bg-yellow btn-flat"><i class="fa fa-download"> Export</i></a>
-                                        <a href="<?php echo base_url('admin/data_pemilih/cetak') ?>" target="_blank" class="btn btn-md bg-purple btn-flat"><i class="fa fa-print"> Cetak</i></a>
+                                        <a href="<?php echo base_url('admin/data_pemilih/create') ?>"
+                                            class="btn btn-md bg-blue btn-flat"><i class="fa fa-plus"> Create</i></a>
+                                        <a href="<?php echo base_url('admin/data_pemilih/import') ?>"
+                                            class="btn btn-md bg-green btn-flat"><i class="fa fa-file-excel-o">
+                                                Import</i></a>
+                                        <a href="<?php echo base_url('admin/data_pemilih/exportData') ?>"
+                                            class="btn btn-md bg-yellow btn-flat"><i class="fa fa-download">
+                                                Export</i></a>
+                                        <a href="<?php echo base_url('admin/data_pemilih/cetak') ?>" target="_blank"
+                                            class="btn btn-md bg-purple btn-flat"><i class="fa fa-print"> Cetak</i></a>
                                     </div>
                                     <div class="col-sm-6 text-right">
-                                        <form action="<?php echo base_url('admin/data_pemilih/index'); ?>" class="form-inline" method="get">
+                                        <form action="<?php echo base_url('admin/data_pemilih/index'); ?>"
+                                            class="form-inline" method="get">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="q">
                                                 <span class="input-group-btn">
                                                     <?php
                                                     if ($q <> '') {
                                                     ?>
-                                                        <a href="<?php echo base_url('admin/pemilih'); ?>" class="btn btn-default">Reset</a>
+                                                    <a href="<?php echo base_url('admin/pemilih'); ?>"
+                                                        class="btn btn-default">Reset</a>
                                                     <?php
                                                     }
                                                     ?>
-                                                    <button class="btn btn-flat btn-primary" type="submit">Search</button>
+                                                    <button class="btn btn-flat btn-primary"
+                                                        type="submit">Search</button>
                                                 </span>
                                             </div>
                                         </form>
@@ -61,34 +72,56 @@
                                             <th class="text-center">Nama</th>
                                             <th class="text-center">Kelas</th>
                                             <th class="text-center">L/P</th>
-                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Status Memilih BEM</th>
+                                            <th class="text-center">Status Memilih DPM</th>
                                             <th class="text-center">Aktif</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($data_pemilih_data as $data_pemilih) : ?>
-                                            <tr>
-                                                <td width="10px"><?php echo htmlspecialchars(++$start, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php echo htmlspecialchars($data_pemilih->nis, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php echo htmlspecialchars($data_pemilih->username, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php echo htmlspecialchars($data_pemilih->nama, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php echo htmlspecialchars($data_pemilih->kelas, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td width="10px" class="text-center"><?php echo htmlspecialchars($data_pemilih->jk, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td class="text-center"><?php echo ($data_pemilih->status === 'Belum Memilih') ? anchor("admin/pemilih", 'Belum Memilih', 'class="label label-danger"') : anchor("admin/data_pemilih/reset_status/" . $data_pemilih->id, 'Sudah Memilih', 'class="label label-success"'); ?></td>
-                                                <td class="text-center"><?php echo ($data_pemilih->aktif) ? anchor("admin/data_pemilih/deactivate/" . $data_pemilih->id, 'Active', 'class="label label-info"') : anchor("admin/data_pemilih/activate/" . $data_pemilih->id, 'Inactive', 'class="label label-danger"'); ?></td>
-                                                <td class="text-center">
-                                                    <a href="<?php echo base_url('admin/data_pemilih/read/' . $data_pemilih->id) ?>" class="btn btn-sm btn-flat btn-info"><i class="fa fa-search"></i></a>
-                                                    <a href="<?php echo base_url('admin/data_pemilih/update/' . $data_pemilih->id) ?>" class="btn btn-sm btn-flat bg-orange"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-sm btn-flat btn-danger" data-whatever="<?php echo base_url('admin/data_pemilih/delete/' . $data_pemilih->id) ?>" data-toggle="modal" data-target="#modal-danger"><i class="fa fa-trash"></i></button>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td width="10px">
+                                                <?php echo htmlspecialchars(++$start, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td><?php echo htmlspecialchars($data_pemilih->nis, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <td><?php echo htmlspecialchars($data_pemilih->username, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <td><?php echo htmlspecialchars($data_pemilih->nama, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <td><?php echo htmlspecialchars($data_pemilih->kelas, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <td width="10px" class="text-center">
+                                                <?php echo htmlspecialchars($data_pemilih->jk, ENT_QUOTES, 'UTF-8'); ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo ($data_pemilih->status === 'Belum Memilih') ? anchor("admin/pemilih", 'Belum Memilih', 'class="label label-danger"') : anchor("admin/data_pemilih/reset_status/" . $data_pemilih->id, 'Sudah Memilih', 'class="label label-success"'); ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo ($data_pemilih->statusdpm === 'Belum Memilih') ? anchor("admin/pemilih", 'Belum Memilih', 'class="label label-danger"') : anchor("admin/data_pemilih/reset_status/" . $data_pemilih->id, 'Sudah Memilih', 'class="label label-success"'); ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo ($data_pemilih->aktif) ? anchor("admin/data_pemilih/deactivate/" . $data_pemilih->id, 'Active', 'class="label label-info"') : anchor("admin/data_pemilih/activate/" . $data_pemilih->id, 'Inactive', 'class="label label-danger"'); ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="<?php echo base_url('admin/data_pemilih/read/' . $data_pemilih->id) ?>"
+                                                    class="btn btn-sm btn-flat btn-info"><i
+                                                        class="fa fa-search"></i></a>
+                                                <a href="<?php echo base_url('admin/data_pemilih/update/' . $data_pemilih->id) ?>"
+                                                    class="btn btn-sm btn-flat bg-orange"><i class="fa fa-edit"></i></a>
+                                                <button type="button" class="btn btn-sm btn-flat btn-danger"
+                                                    data-whatever="<?php echo base_url('admin/data_pemilih/delete/' . $data_pemilih->id) ?>"
+                                                    data-toggle="modal" data-target="#modal-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </td>
+                                        </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
                                 <div class="row">
                                     <div class="col-sm-5">
-                                        <a class="btn btn-sm btn-info btn-flat">Total Record : <?php echo $total_rows ?></a>
+                                        <a class="btn btn-sm btn-info btn-flat">Total Record :
+                                            <?php echo $total_rows ?></a>
                                     </div>
                                     <div class="col-sm-7 text-right">
                                         <?php echo $pagination ?>
@@ -129,37 +162,41 @@
 
 <?php $this->load->view('back/js') ?>
 <!-- DataTables -->
-<script src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net/js/jquery.dataTables.min.js">
+</script>
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js">
+</script>
 <script>
-    // DataTables Script
-    $(function() {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging': false,
-            'lengthChange': true,
-            'searching': false,
-            'ordering': true,
-            'info': false,
-            'autoWidth': true
-        })
+// DataTables Script
+$(function() {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+        'paging': false,
+        'lengthChange': true,
+        'searching': false,
+        'ordering': true,
+        'info': false,
+        'autoWidth': true
     })
-    // infoMassages Timer
-    window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function() {
-            $(this).remove();
-        });
-    }, 2000);
-    // Modal Controller
-    $('#modal-danger').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var link = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        // modal.find('#saveChanges').val(link)
-        var modal = document.getElementById("saveChanges")
-        modal.setAttribute("href", link);
-    })
+})
+// infoMassages Timer
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function() {
+        $(this).remove();
+    });
+}, 2000);
+// Modal Controller
+$('#modal-danger').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var link = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    // modal.find('#saveChanges').val(link)
+    var modal = document.getElementById("saveChanges")
+    modal.setAttribute("href", link);
+})
 </script>
 
 </body>

@@ -71,7 +71,7 @@ class Home extends CI_Controller
                 'nama' => $this->session->userdata('nama'),
             );
 
-            $this->load->view('front/terimakasih', $data);
+            $this->load->view('front/votedpm', $data);
         }
     }
 
@@ -123,9 +123,10 @@ class Home extends CI_Controller
                 );
                 // Update jumlah suara counter ke database
                 $this->Home_model->update('idkandidat', $row->idkandidat, 'kandidat', $suaraData);
-            };
+            }
+            ;
 
-            redirect('vote', 'refresh');
+            redirect('votedpm', 'refresh');
         } else {
             redirect('home', 'refresh');
             $this->session->set_flashdata(
