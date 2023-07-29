@@ -33,7 +33,7 @@ class Kandidat_model extends CI_Model
     function total_rows($q = NULL)
     {
         $this->db->like('idkandidat', $q);
-        $this->db->or_like('organisasi', $q);
+        // $this->db->or_like('organisasi', $q);
         $this->db->or_like('nama', $q);
         $this->db->or_like('nourut', $q);
         $this->db->or_like('jumlahsuara', $q);
@@ -50,7 +50,7 @@ class Kandidat_model extends CI_Model
     {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('idkandidat', $q);
-        $this->db->or_like('organisasi', $q);
+        // $this->db->or_like('organisasi', $q);
         $this->db->or_like('nama', $q);
         $this->db->or_like('nourut', $q);
         $this->db->or_like('jumlahsuara', $q);

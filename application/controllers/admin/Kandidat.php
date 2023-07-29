@@ -51,6 +51,7 @@ class Kandidat extends CI_Controller
             'start' => $start,
         );
         $this->load->view('back/kandidat/kandidat_list', $data);
+    
     }
 
     public function read($id)
@@ -59,7 +60,7 @@ class Kandidat extends CI_Controller
         if ($row) {
             $data = array(
                 'idkandidat' => $row->idkandidat,
-                'organisasi' => $row->organisasi,
+                // 'organisasi' => $row->organisasi,
                 'nama' => $row->nama,
                 'nourut' => $row->nourut,
                 'visi' => $row->visi,
@@ -86,7 +87,7 @@ class Kandidat extends CI_Controller
             'button' => 'Create',
             'action' => site_url('admin/kandidat/create_action'),
             'idkandidat' => set_value('idkandidat'),
-            'organisasi' => set_value('organisasi'),
+            // 'organisasi' => set_value('organisasi'),
             'nama' => set_value('nama'),
             'nourut' => set_value('nourut'),
             'visi' => set_value('visi'),
@@ -123,7 +124,7 @@ class Kandidat extends CI_Controller
                 $inputFileName = $upload_data['full_path'];
 
                 $data = array(
-                    'organisasi' => $this->input->post('organisasi', TRUE),
+                    // 'organisasi' => $this->input->post('organisasi', TRUE),
                     'nama' => $this->input->post('nama', TRUE),
                     'nourut' => $this->input->post('nourut', TRUE),
                     'visi' => $this->input->post('visi', TRUE),
@@ -157,13 +158,13 @@ class Kandidat extends CI_Controller
                 'button' => 'Update',
                 'action' => site_url('admin/kandidat/update_action'),
                 'idkandidat' => set_value('idkandidat', $row->idkandidat),
-                'organisasi' => set_value('organisasi', $row->organisasi),
+                // 'organisasi' => set_value('organisasi', $row->organisasi),
                 'nama' => set_value('nama', $row->nama),
                 'nourut' => set_value('nourut', $row->nourut),
                 'visi' => set_value('visi', $row->visi),
                 'misi' => set_value('misi', $row->misi),
                 'foto' => set_value('foto', $row->foto),
-                'status' => set_value('status', $row->status)
+                // 'status' => set_value('status', $row->status)
             );
             $this->load->view('back/kandidat/kandidat_form', $data);
         } else {
@@ -185,7 +186,7 @@ class Kandidat extends CI_Controller
 
         $this->load->helper('file');
         $this->load->library('upload', $config);
-        $this->form_validation->set_rules('image', 'Upload File', 'callback_checkFileValidation');
+        $this->form_validation->set_rules('image','Upload File', 'callback_checkFileValidation');
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
@@ -202,7 +203,7 @@ class Kandidat extends CI_Controller
             // 8 => ‘A PHP extension stopped the file upload.’,
 
             // Cek kode error terlebih dahulu
-            if ($_FILES['image']['error'] != 4) {
+            // if ($_FILES['image']['error'] != 4) {
                 // Jika file tidak kosong lakukan sesuatu disini
                 // Anda bisa update data dan gambar
                 // atau aksi lain
@@ -212,24 +213,25 @@ class Kandidat extends CI_Controller
                     $upload_data = $this->upload->data();
                     $fileName = $upload_data['file_name']; //Nama File
                     $fileType = $upload_data['file_ext']; //Extension File
-
+                    
                     // File Stored Path
                     $filePath = $upload_data['full_path'];
 
                     // Get passData
-                    $passData = $this->Kandidat_model->get_by_id($this->input->post('idkandidat', true));
+                    // $passData = $this->Kandidat_model->get_by_id($this->input->post('idkandidat', true));
                     // delete image sebelumnya
-                    unlink('./assets/uploads/kandidat/' . $passData->foto);
-
+                    // var_dump($passData);
+                    // unlink('./assets/uploads/kandidat/'.$passData->foto);
+                    
                     $data = array(
-                        'organisasi' => $this->input->post('organisasi', TRUE),
+                        // 'organisasi' => $this->input->post('organisasi', TRUE),
                         'nama' => $this->input->post('nama', TRUE),
                         'nourut' => $this->input->post('nourut', TRUE),
                         'jumlahsuara' => $this->input->post('jumlahsuara', TRUE),
                         'visi' => $this->input->post('visi', TRUE),
                         'misi' => $this->input->post('misi', TRUE),
                         'foto' => $fileName,
-                        'filefoto' => base_url() . $filePath
+                        // 'filefoto' => base_url().$filePath
                     );
 
                     // Update Database
@@ -242,24 +244,21 @@ class Kandidat extends CI_Controller
                         Update Record Success </div>'
                     );
                     redirect('admin/kandidat', 'refresh');
-                } else {
-                    // Jika validasi file gagal. Kirim error ke flashdata massages dan redirect ke index
-                    $error = array('error' => $this->upload->display_errors());
-                    $this->edit($this->input->post('idkandidat', TRUE));
+                // } else {
+                //     // Jika validasi file gagal. Kirim error ke flashdata massages dan redirect ke index
+                //     $error = array('error' => $this->upload->display_errors());
+                //     $this->edit($this->input->post('idkandidat', TRUE));
                 }
-            } else {
-                // Jika file kosong lakukan sesuatu disini    
-                // Anda bisa mengupdate database tanpa mengupdate gambar
-                // atau melakukan sesuatu yang lain
-
+            else {
                 $data = array(
-                    'organisasi' => $this->input->post('organisasi', TRUE),
+                    // 'organisasi' => $this->input->post('organisasi', TRUE),
                     'nama' => $this->input->post('nama', TRUE),
                     'nourut' => $this->input->post('nourut', TRUE),
                     'jumlahsuara' => $this->input->post('jumlahsuara', TRUE),
                     'visi' => $this->input->post('visi', TRUE),
-                    'misi' => $this->input->post('misi', TRUE)
+                    'misi' => $this->input->post('misi', TRUE),
                 );
+               
 
                 // Update Database
                 $this->Kandidat_model->update($this->input->post('idkandidat', TRUE), $data);

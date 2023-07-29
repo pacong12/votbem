@@ -176,18 +176,15 @@ function convertNumber($number)
 
     $output = "";
 
-    if ($integer{
-        0} == "-") {
+    if ($integer[0] == "-") {
         $output = "negative ";
         $integer    = ltrim($integer, "-");
-    } else if ($integer{
-        0} == "+") {
+    } else if ($integer[0] == "+") {
         $output = "positive ";
         $integer    = ltrim($integer, "+");
     }
 
-    if ($integer{
-        0} == "0") {
+    if ($integer[0] == "0") {
         $output .= "zero";
     } else {
         $integer = str_pad($integer, 36, "0", STR_PAD_LEFT);
@@ -196,10 +193,7 @@ function convertNumber($number)
 
         $groups2 = array();
         foreach ($groups as $g) {
-            $groups2[] = convertThreeDigit($g{
-                0}, $g{
-                1}, $g{
-                2});
+            $groups2[] = convertThreeDigit($g[0], $g[1], $g[2]);
         }
 
         for ($z = 0; $z < count($groups2); $z++) {
@@ -207,8 +201,7 @@ function convertNumber($number)
                 $output .= $groups2[$z] . convertGroup(11 - $z) . ($z < 11
                     && !array_search('', array_slice($groups2, $z + 1, -1))
                     && $groups2[11] != ''
-                    && $groups[11]{
-                        0} == '0'
+                    && $groups[11][0] == '0'
                     ? " and "
                     : ", ");
             }
@@ -220,8 +213,7 @@ function convertNumber($number)
     if ($fraction > 0) {
         $output .= " point";
         for ($i = 0; $i < strlen($fraction); $i++) {
-            $output .= " " . convertDigit($fraction{
-                $i});
+            $output .= " " . convertDigit($fraction[$i]);
         }
     }
 

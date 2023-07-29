@@ -56,7 +56,7 @@
                                             <th>Nama</th>
                                             <th>Nourut</th>
                                             <th>Suara</th>
-                                            <th>Organisasi</th>
+                                            <!-- <th>Organisasi</th> -->
                                             <th>Visi</th>
                                             <th>Misi</th>
                                             <th>Foto</th>
@@ -71,7 +71,7 @@
                                                 <td><?php echo htmlspecialchars($kandidat->nama, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php echo htmlspecialchars($kandidat->nourut, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php echo htmlspecialchars($kandidat->jumlahsuara, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php echo htmlspecialchars($kandidat->organisasi, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <!-- <td><?php echo htmlspecialchars($kandidat->organisasi, ENT_QUOTES, 'UTF-8'); ?></td> -->
                                                 <td><?php echo $kandidat->visi ?></td>
                                                 <td><?php echo $kandidat->misi ?></td>
                                                 <td><img height="50px" src="<?php echo base_url('assets/uploads/kandidat/' . $kandidat->foto) ?>"></td>

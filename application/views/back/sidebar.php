@@ -20,11 +20,7 @@
         </a>
       </li>
       <!-- ./Dashboard -->
-      <li>
-        <a href="<?php echo base_url('admin/filemanager') ?>">
-          <i class="fa fa-folder"></i> <span>Filemanager</span>
-        </a>
-      </li>
+     
       <!-- ./Filemanager -->
       <li>
         <a href="<?php echo base_url('admin/kelas') ?>">
