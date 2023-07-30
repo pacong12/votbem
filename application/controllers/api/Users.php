@@ -67,6 +67,7 @@ class Users extends RestController
                     $token_data['nama'] = $output->nama;
                     $token_data['username'] = $output->username;
                     $token_data['status'] = $output->status;
+                    $token_data['statusdpm'] = $output->statusdpm;
                     $token_data['aktif'] = $output->aktif;
                     $token_data['level'] = "siswa";
                     $token_data['time'] = time();
@@ -77,6 +78,7 @@ class Users extends RestController
                         'userid'    => $output->id,
                         'nama'      => $output->nama,
                         'status'    => $output->status,
+                        'statusdpm'    => $output->statusdpm,
                         'aktif'     => $output->aktif,
                         "level"     => 'siswa',
                         'token'     => $user_token,

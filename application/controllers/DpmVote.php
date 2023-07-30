@@ -16,14 +16,21 @@ class DpmVote extends CI_Controller
     }
     public function index()
     {
-        return $this->load->view('front/votedpm');
+             // Security check if the user is authorize
+             if (cek_login_bol   ()) {
+                redirect('votedpm', 'refresh');
+            }
+    
+            $data['title'] = 'E-Voting';
+            $data['action'] = site_url('user/Userauth/login');
+    
+            $this->load->view('front/main', $data);
+    
     }
-    public function vote()
+    public function votedpm()
     {
         // Security check if the user is authorize
-        if (!cek_login_bol()) {
-            redirect('user/Userauth', 'refresh');
-        }
+      
 
         // Get All Kandidat
         $kandidat_data_dpm = $this->Dpm_model->get_all('nourut', 'kandidatdpm', 'ASC');
@@ -31,12 +38,12 @@ class DpmVote extends CI_Controller
         $data = array(
 
             // Data kandidat diambil dari database
-            'kandidat_data' => $kandidat_data_dpm,
+            'kandidat_data_dpm' => $kandidat_data_dpm,
 
         );
 
         // Check status sudah memilih atau belum
-        $status = $this->session->userdata('status');
+        $status = $this->session->userdata('statusdpm');
         if ($status === 'Belum Memilih') {
             $this->load->view('front/votedpm', $data);
         } elseif ($status === 'Sudah Memilih') {
@@ -49,7 +56,7 @@ class DpmVote extends CI_Controller
         }
     }
 
-    public function doVote($idkandidatdpm)
+    public function doVotedpm($idkandidatdpm)
     {
         // Security check if the user is authorize
         if (!cek_login_bol()) {
@@ -62,7 +69,7 @@ class DpmVote extends CI_Controller
         $tipe = $this->session->userdata('level');
 
         // Check status sudah memilih atau belum
-        $status = $this->session->userdata('status');
+        $status = $this->session->userdata('statusdpm');
         if ($status === 'Belum Memilih') {
 
             // insertData
@@ -73,36 +80,36 @@ class DpmVote extends CI_Controller
             );
 
             // Insert data
-            $this->Home_model->insert('data_pemilihan_dpm', $insertData);
+            $this->Dpm_model->insert('data_pemilihan_dpm', $insertData);
 
             // Update Session data
             $userData = array(
-                'status' => 'Sudah Memilih'
+                'statusdpm' => 'Sudah Memilih'
             );
             $this->session->set_userdata($userData);
 
             // Update Database data
             $updateData = array(
-                'status' => 'Sudah Memilih'
+                'statusdpm' => 'Sudah Memilih'
             );
-            $this->Home_model->update('id', $idpemilih, 'data_pemilih', $updateData);
+            $this->Dpm_model->update('id', $idpemilih, 'data_pemilih', $updateData);
 
             // Menghitung jumlah perolehan suara
-            $kandidatData = $this->Home_model->get_all('nourut', 'kandidat', 'DESC');
+            $kandidatData = $this->Dpm_model->get_all('nourut', 'kandidatdpm', 'DESC');
             foreach ($kandidatData as $row) {
                 // Berdasarkan idkandidat yang ada
-                $jumlahSuara = $this->Home_model->tampil_data('idkandidatdpm', $row->$idkandidatdpm, 'data_pemilihan_dpm');
+                $jumlahSuara = $this->Dpm_model->tampil_data('idkandidatdpm', $row->$idkandidatdpm, 'data_pemilihan_dpm');
                 $suaraData = array(
                     'jumlahsuara' => $jumlahSuara,
                 );
                 // Update jumlah suara counter ke database
-                $this->Home_model->update('idkandidatdpm', $row->idkandidatdpm, 'kandidatdpm', $suaraData);
+                $this->Dpm_model->update('idkandidatdpm', $row->idkandidatdpm, 'kandidatdpm', $suaraData);
             }
             ;
 
             redirect('votedpm', 'refresh');
         } else {
-            redirect('home', 'refresh');
+            redirect('dpmvote', 'refresh');
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-warning alert-dismissible">

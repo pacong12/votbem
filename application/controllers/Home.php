@@ -34,7 +34,7 @@ class Home extends CI_Controller
     public function index()
     {
         // Security check if the user is authorize
-        if (cek_login_bol()) {
+        if (cek_login_bol   ()) {
             redirect('vote', 'refresh');
         }
 
@@ -126,7 +126,7 @@ class Home extends CI_Controller
             }
             ;
 
-            redirect('votedpm', 'refresh');
+            redirect('vote', 'refresh');
         } else {
             redirect('home', 'refresh');
             $this->session->set_flashdata(

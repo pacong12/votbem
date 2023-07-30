@@ -41,9 +41,9 @@ class Dpm_model extends CI_Model
     }
 
     // Menghitung jumlah suara
-    public function tampil_data($q, $idkandidat, $table)
+    public function tampil_data($q, $idkandidatdpm, $table)
     {
-        $this->db->where($q, $idkandidat);
+        $this->db->where($q, $idkandidatdpm);
         return $this->db->count_all_results($table);
     }
 }

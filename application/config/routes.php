@@ -56,4 +56,4 @@ $route['admin'] = 'admin/dashboard';
 $route['admin/pemilih'] = 'admin/data_pemilih';
 $route['user'] = 'user/userauth';
 $route['vote'] = 'home/vote';
-$route['votedpm'] = 'dpmvote';
+$route['votedpm'] = 'dpmvote/votedpm';
