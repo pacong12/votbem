@@ -39,11 +39,11 @@
           <i class="fa fa-user-secret"></i> <span>Kandidat</span>
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="<?php echo base_url('admin/kandidatdpm') ?>">
           <i class="fa fa-user-secret"></i> <span>Kandidatdpm </span>
         </a>
-      </li>
+      </li> -->
       <!-- ./Kandidat -->
       <li class="treeview">
         <a href="#">

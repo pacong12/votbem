@@ -73,7 +73,7 @@
                                             <th class="text-center">Kelas</th>
                                             <th class="text-center">L/P</th>
                                             <th class="text-center">Status Memilih BEM</th>
-                                            <th class="text-center">Status Memilih DPM</th>
+                                            <!-- <th class="text-center">Status Memilih DPM</th> -->
                                             <th class="text-center">Aktif</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -97,9 +97,9 @@
                                             <td class="text-center">
                                                 <?php echo ($data_pemilih->status === 'Belum Memilih') ? anchor("admin/pemilih", 'Belum Memilih', 'class="label label-danger"') : anchor("admin/data_pemilih/reset_status/" . $data_pemilih->id, 'Sudah Memilih', 'class="label label-success"'); ?>
                                             </td>
-                                            <td class="text-center">
+                                            <!-- <td class="text-center">
                                                 <?php echo ($data_pemilih->statusdpm === 'Belum Memilih') ? anchor("admin/pemilih", 'Belum Memilih', 'class="label label-danger"') : anchor("admin/data_pemilih/reset_status/" . $data_pemilih->id, 'Sudah Memilih', 'class="label label-success"'); ?>
-                                            </td>
+                                            </td> -->
                                             <td class="text-center">
                                                 <?php echo ($data_pemilih->aktif) ? anchor("admin/data_pemilih/deactivate/" . $data_pemilih->id, 'Active', 'class="label label-info"') : anchor("admin/data_pemilih/activate/" . $data_pemilih->id, 'Inactive', 'class="label label-danger"'); ?>
                                             </td>

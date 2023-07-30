@@ -61,12 +61,12 @@
                                                 <?php echo $status; ?>
                                             </a></td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td><strong>Status Memilih DPM</strong></td>
                                         <td><a class="label label-success">
                                                 <?php echo $statusdpm; ?>
                                             </a></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <td><strong>Aktif</strong></td>
                                         <td>

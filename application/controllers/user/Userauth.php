@@ -97,7 +97,7 @@ class Userauth extends CI_Controller
                         Login Berhasil </div>'
                     );
 
-                    redirect('dpmvote', 'refresh');
+                    redirect('vote', 'refresh');
                 } else {
 
                     // Username dan password tidak ditemukan

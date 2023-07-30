@@ -165,7 +165,7 @@
                                     <th>Kelas</th>
                                     <th width="25px">L/P</th>
                                     <th>Status Memilih BEM</th>
-                                    <th>Status Memilih DPM</th>
+                                    <!-- <th>Status Memilih DPM</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -181,7 +181,7 @@
                                     <td width="10px" style="text-align: center">
                                         <?php echo htmlspecialchars($data_pemilih->jk, ENT_QUOTES, 'UTF-8'); ?></td>
                                     <td style="text-align: center"><?php echo $data_pemilih->status ?></td>
-                                    <td style="text-align: center"><?php echo $data_pemilih->statusdpm ?></td>
+                                    <!-- <td style="text-align: center"><?php echo $data_pemilih->statusdpm ?></td> -->
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

@@ -12,7 +12,7 @@
                 id="time"></span></p>
         <hr>
         <p class="lead">
-            <a class="btn btn-primary btn-sm" href="<?php echo base_url('votedpm') ?>"
+            <a class="btn btn-primary btn-sm" href="<?php echo base_url('user/userauth/logout') ?>"
                 role="button">Continue to homepage</a>
         </p>
     </div>

@@ -55,8 +55,8 @@
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
+                <!-- <div class="col-lg-3 col-xs-6">
+                    small box
                     <div class="small-box bg-aqua">
                         <div class="inner">
                             <h3>
@@ -71,7 +71,7 @@
                         <a href="<?php echo base_url('admin/kandidatdpm') ?>" class="small-box-footer">More info <i
                                 class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div> -->
                 <!-- ./col -->
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
@@ -96,7 +96,7 @@
 
             <!-- Main Row -->
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">Data Suara Masuk Untuk BEM</h3>
@@ -113,7 +113,7 @@
 
             <!-- Main Row -->
         
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">Data Suara Masuk Untuk DPM</h3>
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- /.row -->
 
