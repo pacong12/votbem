@@ -1,184 +1,119 @@
-<?php
+<?php $this->load->view('back/meta') ?>
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+<div class="wrapper">
+    <?php $this->load->view('back/head') ?>
 
-class Data_pemilih_model extends CI_Model
-{
+    <?php $this->load->view('back/sidebar') ?>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <h1>Data Pemilih Read</h1>
+        </div><!-- /.col -->
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <table id="example2" class="table table-bordered table-striped">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>NIS</strong></td>
+                                        <td>
+                                            <?php echo $nis; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Username</strong></td>
+                                        <td>
+                                            <?php echo $username; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Password</strong></td>
+                                        <td>
+                                            <?php echo $password; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Nama Lengkap</strong></td>
+                                        <td>
+                                            <?php print_r($nama); ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Kelas</strong></td>
+                                        <td>
+                                            <?php print_r($kelas); ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>L/P</strong></td>
+                                        <td>
+                                            <?php echo $jk; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Status Memilih BEM</strong></td>
+                                        <td><a class="label label-success">
+                                                <?php echo $status; ?>
+                                            </a></td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td><strong>Status Memilih DPM</strong></td>
+                                        <td><a class="label label-success">
+                                                
+                                            </a></td>
+                                    </tr> -->
+                                    <tr>
+                                        <td><strong>Aktif</strong></td>
+                                        <td>
+                                            <?php ($aktif) ? print_r('<a class="label label-info disabled">Active</a>') : print_r('<a class="label label-danger disabled">Inactive</a>') ?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-6 text-right">
+                                    <a href="<?php echo base_url('admin/pemilih') ?>" class="btn btn-default">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <?php $this->load->view('back/footer') ?>
+</div><!-- ./wrapper -->
 
-    public $table = 'data_pemilih';
-    public $id = 'id';
-    public $order = 'DESC';
-    private $_batchImport;
+<?php $this->load->view('back/js') ?>
+<!-- DataTables -->
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script
+    src="<?php echo base_url('assets/template/backend/') ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+    // DataTables Script
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': false,
+            'lengthChange': true,
+            'searching': false,
+            'ordering': false,
+            'info': false,
+            'autoWidth': true
+        })
+    })
+</script>
 
-    function __construct()
-    {
-        parent::__construct();
-    }
+</body>
 
-    // get all
-    function get_all()
-    {
-        $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table)->result();
-    }
-
-    // get data by id
-    function get_by_id($id)
-    {
-        $this->db->where($this->id, $id);
-        return $this->db->get($this->table)->row();
-    }
-
-    // get total rows
-    function total_rows($q = NULL)
-    {
-        $this->db->like('id', $q);
-        $this->db->or_like('nis', $q);
-        $this->db->or_like('username', $q);
-        $this->db->or_like('password', $q);
-        $this->db->or_like('nama', $q);
-        $this->db->or_like('kelas', $q);
-        $this->db->or_like('idkelas', $q);
-        $this->db->or_like('jk', $q);
-        $this->db->or_like('status', $q);
-        $this->db->or_like('statusdpm', $q);
-        $this->db->or_like('aktif', $q);
-        $this->db->from($this->table);
-        return $this->db->count_all_results();
-    }
-
-    // get data with limit and search
-    function get_limit_data($limit, $start = 0, $q = NULL)
-    {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('id', $q);
-        $this->db->or_like('nis', $q);
-        $this->db->or_like('username', $q);
-        $this->db->or_like('password', $q);
-        $this->db->or_like('nama', $q);
-        $this->db->or_like('kelas', $q);
-        $this->db->or_like('idkelas', $q);
-        $this->db->or_like('jk', $q);
-        $this->db->or_like('status', $q);
-        $this->db->or_like('statusdpm', $q);
-        $this->db->or_like('aktif', $q);
-        $this->db->limit($limit, $start);
-        return $this->db->get($this->table)->result();
-    }
-
-    // insert data
-    function insert($data)
-    {
-        $this->db->insert($this->table, $data);
-    }
-
-    // update data
-    function update($id, $data)
-    {
-        $this->db->where($this->id, $id);
-        $this->db->update($this->table, $data);
-    }
-
-    // delete data
-    function delete($id)
-    {
-        $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
-    }
-
-    // kelas dropdown menu
-    function kelasDropdown()
-    {
-        // ambil data dari db
-        $this->db->order_by('kelas', 'asc');
-        $result = $this->db->get('kelas');
-        // bikin array
-        // please select berikut ini merupakan tambahan saja agar saat pertama
-        // diload akan ditampilkan text please select.
-        $dd[''] = 'Please Select';
-        if ($result->num_rows() > 0) {
-            foreach ($result->result() as $row) {
-                // tentukan value (sebelah kiri) dan labelnya (sebelah kanan)
-                $dd[$row->idkelas] = $row->kelas;
-            }
-        }
-        return $dd;
-    }
-
-    // ambil kelas dari idkelas
-    public function getKelas($id)
-    {
-        $q = $this->db->select('*')
-            ->where(['kelas.idkelas' => $id])
-            ->get('kelas');
-        // return ($q->num_rows() > 0) ? $q->row() : row();
-        if ($q->num_rows() > 0) {
-            return $q->row();
-        } else {
-            return false;
-        }
-    }
-
-    // getKelas data by idkelas
-    function getKelas_by_idkelas($id)
-    {
-        $q = $this->db->select('data_pemilih.idkelas, kelas.*')
-            ->join('kelas', 'data_pemilih.idkelas = kelas.idkelas')
-            ->where(['data_pemilih.id' => $id])
-            ->get('data_pemilih');
-        // return ($q->num_rows() > 0) ? $q->row() : row();
-        if ($q->num_rows() > 0) {
-            return $q->row();
-        } else {
-            return false;
-        }
-    }
-
-    // get_idKelas
-    function get_idKelas($kelas)
-    {
-        $q = $this->db->select('*')
-            ->where(['kelas.kelas' => $kelas])
-            ->get('kelas');
-        // return ($q->num_rows() > 0) ? $q->row() : row();       
-        if ($q->num_rows() > 0) {
-            return $q->row();
-        } else {
-            return false;
-        }
-    }
-
-    // Batch Import
-    public function setBatchImport($batchImport)
-    {
-        $this->_batchImport = $batchImport;
-    }
-
-    // save data
-    public function importData()
-    {
-        $data = $this->_batchImport;
-        $this->db->insert_batch($this->table, $data);
-    }
-
-    // Get settings data all
-    public function settings_data_all()
-    {
-        $this->db->order_by('id', 'ASC');
-        return $this->db->get('settings')->result();
-    }
-
-    // Get settings data by id
-    public function settings_data_by_id($id)
-    {
-        $this->db->where('id', $id);
-        return $this->db->get('settings')->row();
-    }
-}
-
-/* End of file Data_pemilih_model.php */
-/* Location: ./application/models/Data_pemilih_model.php */
-/* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2019-09-29 00:00:34 */
-/* http://harviacode.com */
+</html>
