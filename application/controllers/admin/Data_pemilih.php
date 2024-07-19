@@ -113,42 +113,46 @@ class Data_pemilih extends CI_Controller
         $this->load->view('back/data_pemilih/data_pemilih_form', $data);
     }
 
-    public function create_action()
-    {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $getKelas = $this->Data_pemilih_model->getKelas($this->input->post('kelas'));
-
-            $nis = $this->input->post('nis', TRUE);
-            $username = $this->input->post('username', TRUE);
-            $password = $this->input->post('password', TRUE);
-
-            if (empty($username) && empty($password)) {
-                $username = $nis;
-                $password = $nis;
-            } elseif (!empty($username) && empty($password)) {
-                $password = $nis;
-            } elseif (empty($username) && empty(!$password)) {
-                $username = $nis;
-            }
-
-            $data = array(
-                'nis' => $nis,
-                'username' => $username,
-                'password' => $password,
-                'nama' => $this->input->post('nama', TRUE),
-                'kelas' => $getKelas->kelas,
-                'idkelas' => $this->input->post('kelas', TRUE),
-                'jk' => $this->input->post('jk', TRUE),
-                'status' => 'Belum Memilih',
-                'statusdpm' => 'Belum Memilih',
-                'aktif' => '1',
-            );
-
-            $this->Data_pemilih_model->insert($data);
+   public function create_action()
+{
+    $this->_rules();
+    if ($this->form_validation->run() == FALSE) {
+        $this->create();
+    } else {
+        $getKelas = $this->Data_pemilih_model->getKelas($this->input->post('kelas'));
+        $nis = $this->input->post('nis', TRUE);
+        $username = $this->input->post('username', TRUE);
+        $password = $this->input->post('password', TRUE);
+        if (empty($username) && empty($password)) {
+            $username = $nis;
+            $password = $nis;
+        } elseif (!empty($username) && empty($password)) {
+            $password = $nis;
+        } elseif (empty($username) && !empty($password)) {
+            $username = $nis;
+        }
+        $data = array(
+            'nis' => $nis,
+            'username' => $username,
+            'password' => $password,
+            'nama' => $this->input->post('nama', TRUE),
+            'kelas' => $getKelas ? $getKelas->kelas : null,
+            'idkelas' => $this->input->post('kelas', TRUE),
+            'jk' => $this->input->post('jk', TRUE),
+            'status' => 'Belum Memilih',
+            // 'statusdpm' => 'Belum Memilih',  // Remove or comment out this line
+            'aktif' => '1',
+        );
+        
+        // Log the data being inserted
+        log_message('debug', 'Attempting to insert data: ' . print_r($data, true));
+        
+        // Attempt to insert the data
+        $insert_result = $this->Data_pemilih_model->insert($data);
+        
+        if ($insert_result) {
+            // If insertion is successful
+            log_message('info', 'Data insertion successful');
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-success alert-dismissible">
@@ -156,9 +160,20 @@ class Data_pemilih extends CI_Controller
                 Create Record Success. </div>'
             );
             redirect('admin/pemilih', 'refresh');
+        } else {
+            // If insertion fails
+            $error_message = $this->Data_pemilih_model->get_error();
+            log_message('error', 'Failed to insert data. Error: ' . $error_message);
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Failed to create record. Error: ' . $error_message . ' </div>'
+            );
+            redirect('admin/pemilih', 'refresh');
         }
     }
-
+}
     /**
      *
      *  Update data pemilih
